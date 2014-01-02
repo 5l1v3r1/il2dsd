@@ -1,0 +1,223 @@
+#!/bin/bash
+
+# IL-2 FB Dedicated Server installer.
+#
+# Run this script with '-h' option to see the usage help:
+# il2ds-install.sh -h
+
+# ------------------------------------------------------------------------------
+# Definitions
+# ------------------------------------------------------------------------------
+
+prog_name=`basename $0`
+
+# Info about patches (file IDs at Google Drive)
+declare -A patches_info
+
+patches_info[204]=0B4hbTGD5PQqQODBQTzVQLWVnY2M
+patches_info[303]=0B4hbTGD5PQqQTG16S2dKUFJ4Yms
+patches_info[304]=0B4hbTGD5PQqQN1hQNFRuR1FpV3c
+patches_info[401]=0B4hbTGD5PQqQa3ZlS2xMQjBQcE0
+patches_info[402]=0B4hbTGD5PQqQSk50SG1NQm14YTg
+patches_info[403]=0B4hbTGD5PQqQd2Z5UTQ3WDd3eEk
+patches_info[404]=0B4hbTGD5PQqQZWVndk1RbnlhTzg
+patches_info[405]=0B4hbTGD5PQqQaXd6UDAxZlBBVms
+patches_info[406]=0B4hbTGD5PQqQdE9SS3B3R3lkcWM
+patches_info[407]=0B4hbTGD5PQqQS29MbmlPaGM1TmM
+patches_info[4071]=0B4hbTGD5PQqQekNNX1p4dUMtcnM
+patches_info[408]=0B4hbTGD5PQqQVGJuaktvMFZicDQ
+patches_info[409]=0B4hbTGD5PQqQZXRGQ2ZyZmRyYW8
+patches_info[410]=0B4hbTGD5PQqQclRpZGxWdDVpYmc
+patches_info[4101]=0B4hbTGD5PQqQemIyRkNhT1ptMlU
+patches_info[411]=0B4hbTGD5PQqQSVh6T0F5am0zT0k
+patches_info[4111]=0B4hbTGD5PQqQa1IyZ3NCVG5XUDQ
+patches_info[412]=0B4hbTGD5PQqQay1Dc0x1RjE0QTg
+patches_info[4121]=0B4hbTGD5PQqQVWtLdVpiOFEzZmc
+patches_info[4122]=0B4hbTGD5PQqQeXNQWVdSY2x6YlU
+
+patches_names=`echo ${!patches_info[@]}|tr " " "\n"|sort|tr "\n" " "`
+
+# Default path to download to
+dw_path=`pwd`"/il2ds/patches/"
+
+# Default server path to unpack to
+server_path=`pwd`"/il2ds/"
+
+# Set last available version as default target version
+info_keys=($patches_names)
+keys_count=${#info_keys[@]}
+target_version=${info_keys[keys_count-1]}
+
+# ------------------------------------------------------------------------------
+# Parameters parse
+# ------------------------------------------------------------------------------
+
+function printHelp {
+    echo "NAME"
+    echo -e "\t$prog_name"
+    echo
+    echo "SYNOPSIS"
+    echo -e "\t$prog_name " \
+        "[-h|--help]" \
+        "[-a|--availables]" \
+        "[-d|--download download_dir]" \
+        "[-o|--output output_dir]" \
+        "[-v|--version target_version]"
+    echo
+    echo "DESCRIPTION"
+    echo -e "\t$prog_name is a script which allows you to download and" \
+    "install a dedicated server for IL-2 Sturmovik. Server is installed" \
+    "by parts called patches which are packed as zip-archives and stored at" \
+    "Google Drive. You can specify the directory for storing downloaded" \
+    "archives, the directory for server installation and server's" \
+    "target version."
+    echo
+    echo "OPTIONS"
+    echo -e "\t-h, --help"
+    echo -e "\t\tPrint this help"
+    echo
+    echo -e "\t-a, --availables"
+    echo -e "\t\tPrint available target versions"
+    echo
+    echo -e "\t-d, --download download_dir"
+    echo -e "\t\tSet the directory where downloaded archives will be stored"
+    echo
+    echo -e "\t-o, --output output_dir"
+    echo -e "\t\tSet the directory where server will be installed"
+    echo
+    echo -e "\t-v, --version target_version"
+    echo -e "\t\tSet the target version of server"
+    echo
+    echo "EXAMPLES"
+    echo -e "\t$prog_name -d /tmp"
+    echo -e "\t\tDownload archives to /tmp directory"
+    echo -e "\t$prog_name -o /opt/games/il2/ds"
+    echo -e "\t\tInstall server to /opt/games/il2/ds directory"
+    echo -e "\t$prog_name -v 409"
+    echo -e "\t\tSet 409 as target version"
+    echo -e "\t$prog_name -d /tmp -o /opt/games/il2/ds -v 409"
+    echo -e "\t\tSet all previous up together"
+
+    exit 0
+}
+
+function printAvailableVersions {
+    echo "Available versions are:"
+    echo $patches_names
+}
+
+function setDownloadDirectory {
+    dw_path=$1
+}
+
+function setOutputDirectory {
+    server_path=$1
+}
+
+function setTargetVersion {
+    echo $patches_names | grep -w -q $1
+    if [[ $? -eq 0 ]]
+    then
+        target_version=$1
+    else
+        echo "Wrong target version: $1"
+        printAvailableVersions
+        exit -1
+    fi
+}
+
+# Execute getopt on the arguments passed to this program, identified by the
+# special character $@
+PARSED_OPTIONS=$(getopt -n "$0"  -o had:o:v: --long "help,availables,download:,output:,version:"  -- "$@")
+
+#Bad arguments, something has gone wrong with the getopt command.
+if [ $? -ne 0 ];
+then
+  exit 1
+fi
+
+# A little magic, necessary when using getopt.
+eval set -- "$PARSED_OPTIONS"
+
+while true;
+do
+    case "$1" in
+        -h|--help)
+            printHelp
+            shift;;
+
+        -a|--availables)
+            printAvailableVersions
+            exit 0;;
+
+        -d|--download)
+            if [ -n "$2" ];
+            then
+                setDownloadDirectory $2
+            fi
+            shift 2;;
+
+        -o|--output)
+            if [ -n "$2" ];
+            then
+                setOutputDirectory $2
+            fi
+            shift 2;;
+
+        -v|--version)
+            if [ -n "$2" ];
+            then
+                setTargetVersion $2
+            fi
+            shift 2;;
+
+        --)
+            shift
+            break;;
+    esac
+done
+
+# ------------------------------------------------------------------------------
+# Directories check
+# ------------------------------------------------------------------------------
+
+mkdir -p $dw_path
+
+rm -rf $server_path
+mkdir -p $server_path
+
+# ------------------------------------------------------------------------------
+# Print selected parameters
+# ------------------------------------------------------------------------------
+
+echo -e "Server target version:\t\t" $target_version
+echo -e "Downloading archives to:\t" $dw_path
+echo -e "Unpacking archives to:\t\t" $server_path
+
+# ------------------------------------------------------------------------------
+# Installation routine
+# ------------------------------------------------------------------------------
+
+for patch_name in $patches_names
+do
+    # Init variables
+    zip_path="$dw_path/il2-ds-$patch_name.zip"
+    extracted_path="$server_path/$patch_name/"
+
+    # Download archive if does not exist and unpack it
+    patch_link="https://googledrive.com/host/"${patches_info[$patch_name]}
+    wget --no-check-certificate -c -nc $patch_link -O $zip_path
+    unzip -u $zip_path -d $server_path
+
+    # Move extracted files to one level up overwriting existing files
+    cd $extracted_path
+    cp -rf * ..
+    cd -
+    rm -rf $extracted_path
+
+    # Check target version
+    if [ "$patch_name" == "$target_version" ]
+    then
+        break
+    fi
+done
