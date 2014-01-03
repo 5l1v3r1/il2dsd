@@ -66,7 +66,7 @@ function printHelp {
     echo
     echo "DESCRIPTION"
     echo -e "\t$prog_name is a script which allows you to download and" \
-    "install a dedicated server for IL-2 Sturmovik. Server is installed" \
+    "install a dedicated server of IL-2 Sturmovik. Server is installed" \
     "by parts called patches which are packed as zip-archives and stored at" \
     "Google Drive. You can specify the directory for storing downloaded" \
     "archives, the directory for server installation and server's" \

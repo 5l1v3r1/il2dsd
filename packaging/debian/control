@@ -1,0 +1,11 @@
+Package: il2dsd
+Version: 1.0-1
+Section: admin
+Priority: optional
+Architecture: all
+Depends: bash (>=4), coreutils (>=5), python (>=2.7) | python2.7 (>=2.7), python-pip (>=1), python-wine-deamonizer (>=1), wget (>=1), wine (>=1.4) | wine1.7
+Maintainer: Alexander Oblovatniy <oblovatniy@gmail.com>
+Description: IL-2 Dedicated Server daemon
+ Convert your IL-2 FB Dedicated Server into Unix daemon. You can install DS
+ either.
+Homepage: https://github.com/IL2HorusTeam/il2ds-daemon

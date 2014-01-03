@@ -1,0 +1,47 @@
+.\" Manpage for il2ds-installer.
+.\" Contact oblovatniy@gmail.com to correct errors or typos.
+.TH man 8 "03 Jan 2014" "1.0" "il2ds-installer man page"
+.SH NAME
+il2ds-installer \- Install IL-2 FB Dedicated Server.
+.SH SYNOPSIS
+il2ds-installer [-a|--availables] [-d|--download download_dir] [-o|--output output_dir] [-v|--version target_version] [-h|--help]
+.SH DESCRIPTION
+il2ds-installer is a script which allows you to download and install a dedicated server of IL-2 Sturmovik. Server is installed by parts called patches which are packed as zip-archives and stored at Google Drive. You can specify the directory for storing downloaded archives, the directory for server installation and server's target version.
+.SH OPTIONS
+.TP 15
+-a, --availables
+Print available target versions.
+.TP
+-d, --download
+Set the directory where downloaded archives will be stored.
+.TP
+-o, --output
+Set the directory where server will be installed.
+.TP
+-v, --version
+Set the target version of server.
+.TP
+-h, --help
+Print help
+.SH EXAMPLES
+.TP
+il2ds-installer -a
+List all available versions to be installed.
+.TP
+il2ds-installer -d /tmp
+Download archives to '/tmp' directory and install server to './il2ds'.
+.TP
+il2ds-installer -o /opt/games/il2/ds
+Install server to '/opt/games/il2/ds' directory. Patches will be stored at './il2ds/patches/'.
+.TP
+il2ds-installer -v 409
+Set 4.09 as target version.
+.TP
+il2ds-installer -d /tmp -o /opt/games/il2/ds -v 409
+Set all previous up together.
+.SH CAVEATS
+
+.SH AUTHOR
+Alexander Oblovatniy (oblovatniy@gmail.com)
+.SH HOMEPAGE
+https://github.com/IL2HorusTeam/il2ds-daemon
