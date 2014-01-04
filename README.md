@@ -29,7 +29,7 @@ for Debian-like systems and one for manual installation. **DO NOT** mix them!
     sudo apt-get install wine1.7
 
     # Install IL-2 DS Daemon
-    sudo apt-get install il2ds-daemon
+    sudo apt-get install il2dsd
 
 ### Manual way
 
@@ -49,7 +49,7 @@ And then run:
 
 To uninstall run from Debian-like systems, run as usual:
 
-    sudo apt-get remove il2ds-daemon
+    sudo apt-get remove il2dsd
 
 If you have installed things manaully, then:
 
