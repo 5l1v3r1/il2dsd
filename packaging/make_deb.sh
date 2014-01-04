@@ -29,8 +29,8 @@ cp ./debian/conffiles $TARGET_DIR'DEBIAN/'
 cp ./debian/control $TARGET_DIR'DEBIAN/'
 cp ./debian/copyright $TARGET_DIR'usr/share/doc/il2dsd/'
 
-cp ./debian/changelog $TARGET_DIR'usr/share/doc/il2dsd/changelog'
-cp ./debian/changelog $TARGET_DIR'usr/share/doc/il2dsd/changelog.Debian'
+cp ../changelog $TARGET_DIR'usr/share/doc/il2dsd/changelog'
+cp ../changelog $TARGET_DIR'usr/share/doc/il2dsd/changelog.Debian'
 gzip -f --best $TARGET_DIR'usr/share/doc/il2dsd/changelog'
 gzip -f --best $TARGET_DIR'usr/share/doc/il2dsd/changelog.Debian'
 

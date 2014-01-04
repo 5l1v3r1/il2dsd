@@ -20,4 +20,6 @@ echo "Installing IL-2 DS installer..."
 cp ./scripts/il2ds-install /usr/bin/
 chmod +x /usr/bin/il2ds-install
 
+cp ./doc/man/man8/il2ds-install.8 /usr/share/man/man8/il2ds-install.8
+
 echo "Done."

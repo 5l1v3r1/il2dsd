@@ -12,5 +12,6 @@ rm /etc/il2dsd.conf
 
 echo "Uninstalling IL-2 DS installer..."
 rm /usr/bin/il2ds-install
+rm /usr/share/man/man8/il2ds-install.8
 
 echo "Done."

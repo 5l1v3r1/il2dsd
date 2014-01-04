@@ -1,0 +1,4 @@
+scripts/il2ds-install usr/bin
+scripts/il2dsd etc/init.d
+templates/il2dsd.conf etc
+doc/man/man8/il2ds-install.8 usr/share/man/man8
