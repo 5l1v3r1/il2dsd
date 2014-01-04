@@ -15,7 +15,7 @@ of 'start', 'stop', 'status' or 'restart' commands to control IL-2 DS daemon or
 to get its status respectively.
 
 Look through project's REAME for details and instructions. Home page:
-https://github.com/IL2HorusTeam/il2ds-daemon
+https://github.com/IL2HorusTeam/il2dsd
 """
 import ConfigParser
 import os

@@ -20,7 +20,7 @@ for Debian-like systems and one for manual installation. **DO NOT** mix them!
     sudo add-apt-repository ppa:ubuntu-wine/ppa
 
     # Add PPA for IL-2 DS Daemon packages
-    sudo apt-add-repository "deb http://ppa.launchpad.net/il2horus/main/ubuntu precise main"
+    sudo add-apt-repository ppa:il2horus/ppa
 
     # Update packages list
     sudo apt-get update

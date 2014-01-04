@@ -1,13 +1,13 @@
-Source: il2ds-daemon
+Source: il2dsd
 Section: admin
 Priority: optional
 Maintainer: Alexander Oblovatniy <oblovatniy@gmail.com>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.4
-Homepage: https://github.com/IL2HorusTeam/il2ds-daemon
-Vcs-browser: https://github.com/IL2HorusTeam/il2ds-daemon.git
+Homepage: https://github.com/IL2HorusTeam/il2dsd
+Vcs-browser: https://github.com/IL2HorusTeam/il2dsd.git
 
-Package: il2ds-daemon
+Package: il2dsd
 Version: 1.0-1
 Architecture: all
 Depends: ${misc:Depends}, python, python-wine-deamonizer (>=1), wget (>=1), wine (>=1.4) | wine1.7

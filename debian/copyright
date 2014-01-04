@@ -1,7 +1,7 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Files: *
-Upstream-Name: il2ds-daemon
-Source: https://github.com/IL2HorusTeam/il2ds-daemon
+Upstream-Name: il2dsd
+Source: https://github.com/IL2HorusTeam/il2dsd
 Copyright: 2014 Alexander Oblovatniy <oblovatniy@gmail.com>
 License: GPL-2
 Location: /usr/share/common-licenses/GPL-2
