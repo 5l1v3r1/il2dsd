@@ -51,7 +51,7 @@ To uninstall run from Debian-like systems, run as usual:
 
     sudo apt-get remove il2dsd
 
-If you have installed things manaully, then:
+If you have installed things manually, then:
 
     # Uninstall daemon
     sudo bash uninstall.sh
