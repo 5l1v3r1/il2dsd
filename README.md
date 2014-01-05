@@ -78,15 +78,17 @@ Getting dedicated server
 ------------------------
 
 As you may know, IL-2 DS is about 3.2 GB, so it's unreasonably to put it into
-some repository. Moreover it will be illegal. So, you need to get server
-somewhere and set path to in in config file, as it was mentioned just above. If
-do not have a local copy of DS, don't go to sorrow - we will help you!
+some repository. So, you need to get server somewhere and set path to in in
+config file, as it was mentioned just above. If do not have a local copy of
+DS, don't go to sorrow - we will help you!
 
 We are keeping track of official patches which are free to distribute and we
 store all of their repacked copies at Google Drive. Repack means that
 originally a patch is an self-extracting archive (exe), but they are
 inconvenient to use on any UNIX (and other normal OS). So we extracted
 exe-archives and packed them as zip-archives to make everyone happy.
+
+> **Note:** You may download a clean copy Dedicated Server v4.12.2. Help yourself and [take it here](https://drive.google.com/file/d/0B4hbTGD5PQqQOUtBVTJqWEFhaU0/edit?usp=sharing)!
 
 To obtain dedicated server you can use `il2ds-installer` tool which distributes
 with alone with server daemon. So, to get server v4.09 in '/opt/games/il2/ds'
