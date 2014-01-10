@@ -90,25 +90,25 @@ exe-archives and packed them as zip-archives to make everyone happy.
 
 > **Note:** You may download a clean copy Dedicated Server v4.12.2. Help yourself and [take it here](https://drive.google.com/file/d/0B4hbTGD5PQqQOUtBVTJqWEFhaU0/edit?usp=sharing)!
 
-To obtain dedicated server you can use `il2ds-installer` tool which distributes
+To obtain dedicated server you can use `il2ds-install` tool which distributes
 with alone with server daemon. So, to get server v4.09 in '/opt/games/il2/ds'
 and to download patches to '/tmp', run:
 
-    il2ds-installer -d /tmp -o /opt/games/il2/ds -v 409
+    il2ds-install -d /tmp -o /opt/games/il2/ds -v 409
 
 To list all available patches, run:
 
-    il2ds-installer -a
+    il2ds-install -a
 
-If you run `il2ds-installer` with no parameters, it will bring you the latest
+If you run `il2ds-install` with no parameters, it will bring you the latest
 version of server into './il2ds' directory, storing patches in it's 'patches'
 subdirectory. To get more info, run:
 
-    il2ds-installer -h
+    il2ds-install -h
 
 or look man page
 
-    man 8 il2ds-installer
+    man 8 il2ds-install
 
 Usage
 -----
