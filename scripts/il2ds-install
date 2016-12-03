@@ -36,6 +36,7 @@ patches_info[4121]=0B4hbTGD5PQqQVWtLdVpiOFEzZmc
 patches_info[4122]=0B4hbTGD5PQqQeXNQWVdSY2x6YlU
 patches_info[413]=0B4hbTGD5PQqQT1VFM1gxdVNUSjg
 patches_info[4131]=0B4hbTGD5PQqQcE5uS0VKR1puSlk
+patches_info[4132]=0B4hbTGD5PQqQZ3BKb3JwN1ZKejA
 
 patches_names=`echo ${!patches_info[@]}|tr " " "\n"|sort|tr "\n" " "`
 
